@@ -1,11 +1,9 @@
-# [html2text](http://www.aaronsw.com/2002/html2text/)
-
-[![Build Status](https://secure.travis-ci.org/Alir3z4/html2text.png)](http://travis-ci.org/Alir3z4/html2text)
+# html2jira
 
 
-html2text is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
+html2jira is a Python script that converts a page of HTML into the wiki format used by Atlassian's Jira and Confluance applications.
 
-Usage: `html2text.py [(filename|url) [encoding]]`
+Usage: `html2jira.py [(filename|url) [encoding]]`
 
     Options:
       --version             show program's version number and exit
@@ -25,13 +23,13 @@ Usage: `html2text.py [(filename|url) [encoding]]`
 
 Or you can use it from within Python:
 
-    import html2text
-    print html2text.html2text("<p>Hello, world.</p>")
+    import html2jira
+    print html2jira.html2jira("<p>Hello, world.</p>")
 
 Or with some configuration options:
 
-    import html2text
-    h = html2text.HTML2Text()
+    import html2jira
+    h = html2jira.HTML2Text()
     h.ignore_links = True
     print h.handle("<p>Hello, <a href='http://earth.google.com/'>world</a>!")
 
@@ -40,12 +38,11 @@ _Originally written by Aaron Swartz. This code is distributed under the GPLv3._
 
 ## How to install
 
-`html2text` is available on pypi
-https://pypi.python.org/pypi/html2text
+clone this repository, open your terminal, navigate to the root directory and run
+    
+    python setup.py install
 
-```
-$ pip install html2text
-```
+You may need admin privaliges 
 
 
 ## How to run unit tests

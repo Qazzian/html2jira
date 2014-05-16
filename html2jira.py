@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-"""html2text: Turn HTML into equivalent Markdown-structured text."""
+"""html2jira: Turn HTML into equivalent jira wiki format."""
 from __future__ import division
 __version__ = "2014.4.5"
 __author__ = "Aaron Swartz (me@aaronsw.com)"
@@ -198,7 +198,7 @@ def list_numbering_start(attrs):
     return 0
 
 
-class HTML2Text(HTMLParser.HTMLParser):
+class HTML2Jira(HTMLParser.HTMLParser):
     def __init__(self, out=None, baseurl='', bodywidth=BODY_WIDTH):
         HTMLParser.HTMLParser.__init__(self)
 
@@ -903,13 +903,13 @@ def wrapwrite(text):
         sys.stdout.write(text)
 
 
-def html2text(html, baseurl='', bodywidth=BODY_WIDTH):
-    h = HTML2Text(baseurl=baseurl, bodywidth=bodywidth)
+def html2jira(html, baseurl='', bodywidth=BODY_WIDTH):
+    h = HTML2Jira(baseurl=baseurl, bodywidth=bodywidth)
     return h.handle(html)
 
 
 def unescape(s, unicode_snob=False):
-    h = HTML2Text()
+    h = HTML2Jira()
     h.unicode_snob = unicode_snob
     return h.unescape(s)
 
@@ -1004,7 +1004,7 @@ def main():
         data = sys.stdin.read()
 
     data = data.decode(encoding)
-    h = HTML2Text(baseurl=baseurl)
+    h = HTML2Jira(baseurl=baseurl)
     # handle options
     if options.ul_style_dash:
         h.ul_item_mark = '-'

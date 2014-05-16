@@ -12,10 +12,10 @@ import logging
 logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
                     level=logging.DEBUG)
 
-import html2text
+import html2jira
 
 def test_module(fn, google_doc=False, **kwargs):
-    h = html2text.HTML2Text()
+    h = html2jira.HTML2Jira()
     h.fn = fn
 
     if google_doc:
@@ -35,7 +35,7 @@ def test_module(fn, google_doc=False, **kwargs):
 
 def test_command(fn, *args):
     args = list(args)
-    cmd_name = os.path.join(os.path.dirname(fn), '..', 'html2text.py')
+    cmd_name = os.path.join(os.path.dirname(fn), '..', 'html2jira.py')
     cmd = [sys.executable, cmd_name]
 
     if '--googledoc' in args:
@@ -74,7 +74,7 @@ def get_baseline(fn):
     f.close()
     return out
 
-class TestHTML2Text(unittest.TestCase):
+class TestHTML2Jira(unittest.TestCase):
     pass
 
 def generate_test(fn):
@@ -123,9 +123,9 @@ test_dir_name = os.path.dirname(os.path.realpath(__file__))
 for fn in glob.glob("%s/*.html" % test_dir_name):
     test_name = 'test_%s' % os.path.splitext(os.path.basename(fn))[0].lower()
     test_m, test_c = generate_test(fn)
-    setattr(TestHTML2Text, test_name + "_mod", test_m)
+    setattr(TestHTML2Jira, test_name + "_mod", test_m)
     if test_c:
-        setattr(TestHTML2Text, test_name + "_cmd", test_c)
+        setattr(TestHTML2Jira, test_name + "_cmd", test_c)
 
 if __name__ == "__main__":
     unittest.main()

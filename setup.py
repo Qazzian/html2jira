@@ -32,14 +32,14 @@ class RunTests(Command):
 
 
 setup(
-    name="html2text",
+    name="html2jira",
     version="2014.4.5",
     description="Turn HTML into equivalent Markdown-structured text.",
     author="Aaron Swartz",
     author_email="me@aaronsw.com",
-    maintainer='Alireza Savand',
-    maintainer_email='alireza.savand@gmail.com',
-    url='https://github.com/Alir3z4/html2text/',
+    maintainer='Ian Wallis',
+    maintainer_email='Qazzian@gmail.com',
+    url='https://github.com/Qazzian/html2jira/',
     cmdclass={'test': RunTests},
     platforms='OS Independent',
     classifiers=[
@@ -61,12 +61,12 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        html2text=html2text:main
+        html2jira=html2jira:main
     """,
     license='GNU GPL 3',
     requires=requires_list,
     packages=find_packages(),
-    py_modules=['html2text'],
+    py_modules=['html2jira'],
     include_package_data=True,
     zip_safe=False,
 )
