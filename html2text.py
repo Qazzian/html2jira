@@ -216,7 +216,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.google_doc = False
         self.ul_item_mark = '*'
         self.emphasis_mark = '_'
-        self.strong_mark = '**'
+        self.strong_mark = '*'
 
         if out is None:
             self.out = self.outtextf
@@ -438,7 +438,7 @@ class HTML2Text(HTMLParser.HTMLParser):
             self.p()
             if start:
                 self.inheader = True
-                self.o(hn(tag) * "#" + ' ')
+                self.o("h" + hn(tag) + '. ')
             else:
                 self.inheader = False
                 return  # prevent redundant emphasis marks on headers
@@ -452,12 +452,12 @@ class HTML2Text(HTMLParser.HTMLParser):
             else:
                 self.p()
 
-        if tag == "br" and start:
+        if tag == "br" and start and not self.list:
             self.o("  \n")
 
         if tag == "hr" and start:
             self.p()
-            self.o("* * *")
+            self.o("----")
             self.p()
 
         if tag in ["head", "style", 'script']:
@@ -530,7 +530,7 @@ class HTML2Text(HTMLParser.HTMLParser):
                         self.maybe_automatic_link = None
                     elif a:
                         if self.inline_links:
-                            self.o("](" + escape_md(a['href']) + ")")
+                            self.o("|" + escape_md(a['href']) + "]")
                         else:
                             i = self.previousIndex(a)
                             if i is not None:
@@ -603,9 +603,9 @@ class HTML2Text(HTMLParser.HTMLParser):
                 else:
                     nest_count = len(self.list)
                 # TODO: line up <ol><li>s > 9 correctly.
-                self.o("  " * nest_count)
+                self.o("  ")
                 if li['name'] == "ul":
-                    self.o(self.ul_item_mark + " ")
+                    self.o((self.ul_item_mark* nest_count) + " ")
                 elif li['name'] == "ol":
                     li['num'] += 1
                     self.o(str(li['num']) + ". ")
