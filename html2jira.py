@@ -438,7 +438,7 @@ class HTML2Jira(HTMLParser.HTMLParser):
             self.p()
             if start:
                 self.inheader = True
-                self.o("h" + hn(tag) + '. ')
+                self.o("h" + str(hn(tag)) + '. ')
             else:
                 self.inheader = False
                 return  # prevent redundant emphasis marks on headers
