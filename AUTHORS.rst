@@ -10,6 +10,6 @@ The AUTHORS of html2text are (and/or have been):
     * Stefano Rivera
     * Alireza Savand
 
-Maintainer:
-    * Ian Wallis
+Conversion to support Jira:
+    * Ian Wallis (Qazzian)
     
